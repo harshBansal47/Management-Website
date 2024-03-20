@@ -37,7 +37,9 @@ const LeaveForm = ({ isModalOpen, data, isModalClose }) => {
     }
     setLoading(true);
     Axios.post("create-leave", formFields)
-      .then((res) => {})
+      .then((res) => {
+        console.log("working fine", res);
+      })
       .catch((error) => {
         console.error("Failed to request", error);
       })
@@ -52,6 +54,7 @@ const LeaveForm = ({ isModalOpen, data, isModalClose }) => {
           status: statuses[0],
           createdAt: "",
         });
+        isModalClose();
       });
   };
   return (
