@@ -12,16 +12,25 @@ const LeaveForm = ({ isModalOpen, data, isModalClose }) => {
     leaveDate: "",
     leaveDuration: 0,
     status: statuses[0],
-    createdAt: "",
+    createdAt: new Date().toISOString(),
   });
   const [emptyField, setEmptyField] = useState("");
+  const [emptyState, setEmptyState] = useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
+    //setting empty field name to state to render error messages
+    if (value === "") {
+      setEmptyField(name);
+    } else {
+      setEmptyField("");
+    }
+    if (!Object.values(formFields).some((field) => field === "")) {
+      setEmptyState(false);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    formFields.createdAt = new Date().toISOString();
     if (Object.values(formFields).some((field) => field === "")) {
       setEmptyField("All fields are required");
       return;
@@ -154,9 +163,18 @@ const LeaveForm = ({ isModalOpen, data, isModalClose }) => {
                       placeholder="..1-5 Days"
                     />
                   </div>
+                  {emptyField === "leaveDuration" && (
+                    <span className="error-msg">Please Fill Duration</span>
+                  )}
                 </div>
 
-                <button type="submit">Submit</button>
+                <button
+                  type="submit"
+                  disabled={emptyState}
+                  className={emptyState ? "disabled-button" : ""}
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </div>
