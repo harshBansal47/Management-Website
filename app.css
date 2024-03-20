@@ -1,0 +1,26 @@
+/* Style radio options as buttons */
+/* Hide default radio button */
+.leave-duration-options input[type="radio"] {
+  display: none;
+}
+
+/* Style custom radio button as square or rectangle */
+.leave-duration-options label {
+  display: inline-block;
+  padding: 8px 12px; /* Adjust padding as needed */
+  margin-right: 10px; /* Adjust margin as needed */
+  background-color: #ccc; /* Adjust background color as needed */
+  border: 1px solid #ccc; /* Adjust border as needed */
+  border-radius: 4px; /* Adjust border radius as needed */
+  cursor: pointer;
+}
+
+/* Adjust button styles when hovered */
+.leave-duration-options label:hover {
+  background-color: #ddd; /* Adjust background color on hover as needed */
+}
+
+/* Apply styles to checked radio button labels */
+.leave-duration-options input[type="radio"]:checked + label {
+  background-color: #ddd; /* Adjust background color for checked state as needed */
+}
