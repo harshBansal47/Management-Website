@@ -1,0 +1,20 @@
+ const isLoggedIn = useSelector(state => state.manage.login);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Update local storage when isLoggedIn changes
+    localStorage.setItem('login', isLoggedIn.toString());
+  }, [isLoggedIn]);
+
+  const CheckLogin = (status) => {
+    dispatch(setLoginStatus(status.status));
+    dispatch(setAdminStatus(status.isAdmin));
+  };
+
+  if (!isLoggedIn) {
+    return (
+      <>
+        <Login CheckLogin={CheckLogin} />
+      </>
+    );
+  }
